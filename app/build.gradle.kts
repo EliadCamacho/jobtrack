@@ -58,9 +58,6 @@ android {
     compose = true
   }
 
-  // ✅ With Kotlin 1.9.25 + Compose BOM, don't force compiler extension here.
-  // If you later pin a specific Compose compiler, we can add it back properly.
-
   packaging {
     resources {
       excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -92,6 +89,9 @@ dependencies {
 
   implementation(libs.kotlinx.coroutines.android)
   implementation(libs.kotlinx.serialization.json)
+
+  // ✅ Required for XML theme: Theme.Material3.DayNight.NoActionBar + attr/isLightTheme
+  implementation(libs.google.material)
 
   debugImplementation(libs.compose.ui.tooling)
 }
