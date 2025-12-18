@@ -4,16 +4,7 @@ name: Build APK
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
   workflow_dispatch:
-
-permissions:
-  contents: read
-
-concurrency:
-  group: build-apk-${{ github.ref }}
-  cancel-in-progress: true
 
 jobs:
   build-debug-apk:
@@ -30,6 +21,19 @@ jobs:
           distribution: "temurin"
           java-version: "17"
           cache: gradle
+
+      # Installs Android SDK + sdkmanager
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      # ✅ Force-install the SDK packages that match your Gradle config
+      - name: Install required Android SDK packages
+        run: |
+          sdkmanager --install \
+            "platform-tools" \
+            "platforms;android-36" \
+            "build-tools;36.0.0"
+          sdkmanager --licenses
 
       - name: Make gradlew executable
         run: chmod +x ./gradlew
