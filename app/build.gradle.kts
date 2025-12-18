@@ -9,12 +9,12 @@ plugins {
 
 android {
   namespace = "com.lightningshop.jobtrack"
-  compileSdk = 36
+  compileSdk = 35
 
   defaultConfig {
     applicationId = "com.lightningshop.jobtrack"
     minSdk = 26
-    targetSdk = 36
+    targetSdk = 35
     versionCode = 1
     versionName = "0.1.0"
 
@@ -42,7 +42,6 @@ android {
     targetCompatibility = JavaVersion.VERSION_17
   }
 
-  // ✅ Replacement for deprecated kotlinOptions { ... }
   kotlin {
     compilerOptions {
       jvmTarget.set(JvmTarget.JVM_17)
@@ -59,9 +58,8 @@ android {
     compose = true
   }
 
-  composeOptions {
-    kotlinCompilerExtensionVersion = "1.5.16"
-  }
+  // ✅ With Kotlin 1.9.25 + Compose BOM, don't force compiler extension here.
+  // If you later pin a specific Compose compiler, we can add it back properly.
 
   packaging {
     resources {
@@ -72,6 +70,7 @@ android {
 
 dependencies {
   implementation(platform(libs.compose.bom))
+
   implementation(libs.androidx.core.ktx)
   implementation(libs.androidx.lifecycle.runtime)
   implementation(libs.androidx.lifecycle.viewmodel)
