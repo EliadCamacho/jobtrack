@@ -1,18 +1,22 @@
 [versions]
-agp = "8.5.2"
+agp = "8.13.2"
 kotlin = "1.9.25"
+
+# ✅ KSP must match Kotlin version family (Kotlin 1.9.25)
 ksp = "1.9.25-1.0.20"
 
-compose-bom = "2024.09.03"
+compose-bom = "2025.12.00"
+core-ktx = "1.17.0"
+lifecycle = "2.9.0"
+activity-compose = "1.11.0"
+navigation = "2.8.7"
+datastore = "1.1.5"
+room = "2.8.4"
+coroutines = "1.10.1"
+serialization = "1.8.0"
 
-core-ktx = "1.13.1"
-lifecycle = "2.8.6"
-activity-compose = "1.9.3"
-navigation = "2.8.3"
-datastore = "1.1.1"
-room = "2.6.1"
-coroutines = "1.9.0"
-serialization = "1.6.3"
+# ✅ Needed for Theme.Material3.* XML resources
+material = "1.12.0"
 
 [libraries]
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
@@ -39,6 +43,9 @@ room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
+
+# ✅ Material Components (XML themes, attrs like isLightTheme)
+google-material = { module = "com.google.android.material:material", version.ref = "material" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
